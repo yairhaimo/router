@@ -500,19 +500,22 @@ function pipelineProvider() {
  */
 function $componentMapperFactory() {
 
-  var DEFAULT_SUFFIX = 'Controller';
+  var DEFAULT_COMPONENTS_DIR = 'components';
+  var DEFAULT_CONTROLLER_SUFFIX = 'Controller';
+  var DEFAULT_TEMPLATE_SUFFIX = 'html';
 
   var componentToCtrl = function componentToCtrlDefault(name) {
-    return name[0].toUpperCase() + name.substr(1) + DEFAULT_SUFFIX;
+    return name[0].toUpperCase() + name.substr(1) + DEFAULT_CONTROLLER_SUFFIX;
   };
 
   var componentToTemplate = function componentToTemplateDefault(name) {
     var dashName = dashCase(name);
-    return './components/' + dashName + '/' + dashName + '.html';
+    // defaults to ./components/${dashName}/${dashName}.html
+    return './' + DEFAULT_COMPONENTS_DIR + '/' + dashName + '/' + dashName + '.' + DEFAULT_TEMPLATE_SUFFIX;
   };
 
   var ctrlToComponent = function ctrlToComponentDefault(name) {
-    return name[0].toLowerCase() + name.substr(1, name.length - DEFAULT_SUFFIX.length - 1);
+    return name[0].toLowerCase() + name.substr(1, name.length - DEFAULT_CONTROLLER_SUFFIX.length - 1);
   };
 
   var componentToControllerAs = function componentToControllerAsDefault(name) {
